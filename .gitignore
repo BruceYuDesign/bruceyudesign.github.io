@@ -1,7 +1,5 @@
 /node_modules
 /public
-/src
-/*.html
 
 package-lock.json
 package.json
