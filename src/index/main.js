@@ -1,22 +1,36 @@
+// js
+import './banner.js';
+import './project.js';
+import './contact.js';
+
+// css
+import './main.css';
+
+// plugin
 import AOS from 'aos/dist/aos.js';
 import 'aos/dist/aos.css';
 import 'microtip/microtip.css';
 
+// todo 測試資料
+import '../../public/json/banner.json';
+import '../../public/json/project_kind.json';
+import '../../public/json/project.json';
+
 'use strict';
 
-!function() {
+!function () {
 
     const load        = document.getElementById( 'load' );
     const loadControl = document.getElementById( 'loadControl' );
-    let load_animate , load_resource;
+    let load_animate, load_resource;
 
     // 資源與動畫跑完，隱藏load
     const loadHide = () => {
-        if( load_animate && load_resource ) {
+        if ( load_animate && load_resource ) {
             setTimeout( () => {
                 document.body.style.overflow = 'auto';
                 load.classList.add( '--hide' );
-            } , 300 );
+            }, 300 );
         }
     };
 
@@ -35,8 +49,8 @@ import 'microtip/microtip.css';
     const header = document.getElementById( 'header' );
 
     // 漢堡選單
-    document.body.addEventListener( 'click' , function( e ) {
-        if( e.target.getAttribute( 'id' ) === 'headerBurger' ) {
+    document.body.addEventListener( 'click' , function ( e ) {
+        if ( e.target.getAttribute( 'id' ) === 'headerBurger' ) {
             header.classList.toggle( '--open' );
         } else {
             header.classList.remove( '--open' );
@@ -55,7 +69,7 @@ import 'microtip/microtip.css';
         disableMutationObserver: false, // disables automatic mutations' detections (advanced)
         debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
         throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
-        
+
         // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
         offset: 300, // offset (in px) from the original trigger point
         delay: 0, // values from 0 to 3000, with step 50ms
@@ -67,4 +81,4 @@ import 'microtip/microtip.css';
 
     });
 
-} ()
+}()
