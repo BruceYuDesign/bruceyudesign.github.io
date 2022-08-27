@@ -11,7 +11,7 @@
 
     @font-face {
         font-family: 'futura';
-        src: url('@/assets/font/futura-medium-bt.ttf');
+        src: url('./assets/font/futura-medium-bt.ttf');
     };
 
     .custom-mask-image {
