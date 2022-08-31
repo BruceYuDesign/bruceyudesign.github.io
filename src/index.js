@@ -23,6 +23,8 @@ import { popup } from './components/popup.js';
      * ------------------------------------------------------------------------------------------ 
      */
 
+    // load --------------------------------------------------
+
     const load        = document.getElementById( 'load' );
     const loadControl = document.getElementById( 'loadControl' );
     let load_animate, load_resource;
@@ -49,6 +51,8 @@ import { popup } from './components/popup.js';
         loadHide();
     });
 
+    // header --------------------------------------------------
+
     const header = document.getElementById( 'header' );
 
     // 漢堡選單
@@ -60,7 +64,8 @@ import { popup } from './components/popup.js';
         }
     });
 
-    // AOS動畫參數
+    // AOS --------------------------------------------------
+
     AOS.init({
 
         // Global settings:
@@ -78,7 +83,7 @@ import { popup } from './components/popup.js';
         delay: 0, // values from 0 to 3000, with step 50ms
         duration: 500, // values from 0 to 3000, with step 50ms
         easing: 'ease', // default easing for AOS animations
-        once: false, // whether animation should happen only once - while scrolling down
+        once: true, // whether animation should happen only once - while scrolling down
         mirror: false, // whether elements should animate out while scrolling past them
         anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
 
@@ -396,12 +401,11 @@ import { popup } from './components/popup.js';
     // modalProject帶入資料
     const modalProjectWrite = ( data ) => {
 
+        // scrollbar置頂
         modalProjectInfo.scroll( 0 , 0 );
 
         // 頁碼排序
-        detail_data = data.detail.sort( ( a , b ) => {
-            return a.page > b.page ? 1 : -1;
-        });
+        detail_data = data.detail.sort( ( a , b ) => a.page > b.page ? 1 : -1 );
 
         // 預載入圖片
         loadImage( detail_data , 'img' );

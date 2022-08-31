@@ -24,7 +24,7 @@ export default class responsiveJs {
             }
         ]
     }) {
-        this.element = element;
+        this.element = element || window;
         this.defaultFunction = defaultFunction;
         this.breakPoint = breakPoint;
 
@@ -32,19 +32,24 @@ export default class responsiveJs {
         this.memory; // 記憶目前斷點
 
         // 由小到大
-        this.breakPoint.sort((a, b) => a.width < b.width ? -1 : 1);
+        this.breakPoint.sort( ( a , b ) => a.width < b.width ? -1 : 1 );
 
-        window.addEventListener('load', () => this.getBreakPoint(this.element.offsetWidth));
-        window.addEventListener('resize', () => this.getBreakPoint(this.element.offsetWidth));
+        if( this.element === window ) {
+            this.getBreakPoint( window.innerWidth );
+            window.addEventListener( 'resize' , () => this.getBreakPoint( window.innerWidth ) );
+        } else {
+            this.getBreakPoint( this.element.offsetWidth );
+            window.addEventListener( 'resize' , () => this.getBreakPoint( this.element.offsetWidth ) );
+        };
     }
 
     // 判斷斷點
-    getBreakPoint(elementWidth) {
+    getBreakPoint( width ) {
         let target = 0;
 
         // 取得斷點
-        while (target < this.len) {
-            if (elementWidth >= this.breakPoint[target].width) {
+        while ( target < this.len ) {
+            if ( width >= this.breakPoint[ target ].width ) {
                 target++;
             } else {
                 break;
@@ -52,16 +57,16 @@ export default class responsiveJs {
         };
 
         // 避免重複執行
-        if (this.memory !== target) {
+        if ( this.memory !== target ) {
             this.memory = target;
-            this.doResponsive(target);
+            this.doResponsive( target );
         };
     };
 
     // 執行切版
-    doResponsive(target) {
-        if (target > 0) {
-            this.breakPoint[target - 1].breakPointFunction();
+    doResponsive( target ) {
+        if ( target > 0 ) {
+            this.breakPoint[ target - 1 ].breakPointFunction();
         } else {
             this.defaultFunction();
         };

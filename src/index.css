@@ -9,6 +9,10 @@
 
 @layer utilities {
 
+    /* ------------------------------------------------------------
+    CUSTOM STYLE
+    ------------------------------------------------------------ */
+
     @font-face {
         font-family: 'futura';
         src: url('./assets/font/futura-medium-bt.ttf');
@@ -17,13 +21,55 @@
     .custom-mask-image {
         -webkit-mask-image: -webkit-radial-gradient(white, black);
     };
+
+    /* 讀取畫面 */
+    @keyframes fadein {
+        0%   { opacity: 0% }
+        100% { opacity: 100% }
+    };
+    .animate-custom-fadein {
+        animation: fadein 400ms linear 1 backwards
+    };
+
+    /* 平面設計 */
+    @keyframes shaking {
+        0%, 100% { transform: translateY(0%) }
+        50%      { transform: translateY(-2.5%) }
+    };
+    .animate-custom-shaking {
+        animation: shaking 8s linear infinite
+    };
+
+    @keyframes shaking-reverse {
+        0%, 100% { transform: translateY(-2.5%) }
+        50%      { transform: translateY(0%) }
+    };
+    .animate-custom-shaking-reverse {
+        animation: shaking-reverse 8s linear infinite
+    };
+
+    /* UIUX設計 */
+    @keyframes slide {
+        0%, 100% { transform: translateX(6%) }
+        50%      { transform: translateX(0%) }
+    };
+    .animate-custom-slide {
+        animation: slide 8s linear infinite
+    };
+
+    @keyframes slide-reverse {
+        0%, 100% { transform: translateX(-6%) }
+        50%      { transform: translateX(0%) }
+    };
+    .animate-custom-slide-reverse {
+        animation: slide-reverse 8s linear infinite
+    };
 }
 
 @layer components {
 
-    /* Custom ------------------------------ */
-
     /* scrollbar */
+
     .scrollbar-custom-slate-300,
     .scrollbar-custom-slate-400 {
         @apply overflow-auto resize-none;
@@ -31,7 +77,7 @@
 
     .scrollbar-custom-slate-300::-webkit-scrollbar,
     .scrollbar-custom-slate-400::-webkit-scrollbar {
-        @apply bg-transparent w-2 h-2;
+        @apply bg-transparent w-1 h-1 md:w-2 md:h-2;
     };
 
     .scrollbar-custom-slate-300::-webkit-scrollbar-thumb,
@@ -47,7 +93,9 @@
         @apply bg-slate-400;
     };
 
-    /* JS Control ------------------------------ */
+    /* ------------------------------------------------------------
+    JS CONTROL
+    ------------------------------------------------------------ */
 
     /* load */
     #load.--hide {

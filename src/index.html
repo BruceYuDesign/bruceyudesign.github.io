@@ -13,7 +13,7 @@
     <title>BRUCE YU DESIGN</title>
 </head>
 
-<body class="flex flex-col items-center gap-16 bg-slate-100 font-sans overflow-x-hidden" style="overflow: hidden;">
+<body class="flex flex-col items-center gap-16 bg-slate-200 font-sans overflow-x-hidden" style="overflow: hidden;">
 
     <!-- load -------------------------------------------------- -->
     <div id="load" class="fixed left-0 top-0 right-0 bottom-0 grid place-items-center transition duration-300 bg-slate-50 z-50">
@@ -88,7 +88,7 @@
     </header>
 
     <!-- Banner -------------------------------------------------- -->
-    <section id="banner" class="relative w-full h-auto portrait:h-[100vh] landscape:lg:h-[100vh] pt-20 pb-20 landscape:lg:pb-10 flex flex-col items-center justify-center shadow-md --hide">
+    <section id="banner" class="relative w-full h-auto portrait:h-[100vh] landscape:lg:h-[100vh] pt-20 pb-20 landscape:lg:pb-10 flex flex-col items-center justify-center overflow-hidden shadow-md --hide">
 
         <div class="w-5/6 max-w-custom-1400px max-h-[90%] flex flex-col portrait:flex-col landscape:lg:flex-row-reverse items-center justify-evenly">
             <div id="bannerImg" class="w-full sm:w-4/5 landscape:lg:w-3/5 aspect-1 bg-contain bg-no-repeat bg-center transition duration-700 delay-500"
@@ -105,7 +105,7 @@
     </section>
 
     <!-- 平面設計 -------------------------------------------------- -->
-    <div id="service" data-aos="fade-up" data-aos-once="true" class="w-11/12 sm:w-3/4 lg:w-5/6 max-w-custom-1400px flex flex-col lg:flex-row-reverse items-center rounded-3xl overflow-hidden custom-mask-image bg-[#5794b7] shadow-md">
+    <div id="service" data-aos="fade-up" class="w-11/12 sm:w-3/4 lg:w-5/6 max-w-custom-1400px flex flex-col lg:flex-row-reverse items-center rounded-3xl overflow-hidden custom-mask-image bg-[#5794b7] shadow-md">
 
         <!-- 文字 -->
         <div class="w-full lg:w-1/2 px-6 sm:px-14 py-14 flex flex-col gap-10 text-slate-50">
@@ -145,7 +145,7 @@
     </div>
 
     <!-- UI/UX設計 -------------------------------------------------- -->
-    <div data-aos="fade-up" data-aos-once="true" class="w-11/12 sm:w-3/4 lg:w-5/6 max-w-custom-1400px flex flex-col lg:flex-row items-center rounded-3xl overflow-hidden custom-mask-image bg-[#5c7fb2] shadow-md">
+    <div data-aos="fade-up" class="w-11/12 sm:w-3/4 lg:w-5/6 max-w-custom-1400px flex flex-col lg:flex-row items-center rounded-3xl overflow-hidden custom-mask-image bg-[#5c7fb2] shadow-md">
 
         <!-- 文字 -->
         <div class="w-full lg:w-1/2 px-6 sm:px-14 py-14 flex flex-col gap-10 text-slate-50">
@@ -183,7 +183,7 @@
     </div>
 
     <!-- 網頁設計 -------------------------------------------------- -->
-    <div data-aos="fade-up" data-aos-once="true" class="w-11/12 sm:w-3/4 lg:w-5/6 max-w-custom-1400px flex flex-col lg:flex-row-reverse items-center rounded-3xl overflow-hidden custom-mask-image bg-[#6168ae] shadow-md">
+    <div data-aos="fade-up" class="w-11/12 sm:w-3/4 lg:w-5/6 max-w-custom-1400px flex flex-col lg:flex-row-reverse items-center rounded-3xl overflow-hidden custom-mask-image bg-[#6168ae] shadow-md">
 
         <!-- 文字 -->
         <div class="w-full lg:w-1/2 px-6 sm:px-14 py-14 flex flex-col gap-10 text-slate-50">
@@ -235,10 +235,10 @@
     </div>
 
     <!-- 專案作品 -------------------------------------------------- -->
-    <div id="project" class="w-full flex flex-col items-center gap-y-4 py-8 bg-slate-200 bg-[length:48px_48px] bg-repeat" style="background-image: url('./assets/img/bg.svg');">
+    <div id="project" data-aos="fade-up" class="w-full flex flex-col items-center gap-y-4 py-8">
 
         <!-- 文字 -->
-        <div class="w-full sm:w-11/12 max-w-screen-2xl pt-24 pb-8 flex flex-col items-center bg-gradient-to-tr from-[#6751BD] to-[#32AAC8] rounded-3xl shadow-md">
+        <div class="w-full sm:w-11/12 max-w-screen-2xl pt-24 pb-8 flex flex-col items-center bg-gradient-to-tr from-[#3472A7] to-[#59B0E4] rounded-3xl shadow-md">
             <div class="w-5/6 max-w-custom-1400px flex flex-col items-center gap-8 text-slate-50 text-center">
                 <div class="flex flex-col gap-4">
                     <h4 class="text-5xl sm:text-6xl opacity-90">專案作品</h4>
@@ -270,7 +270,7 @@
     </div>
 
     <!-- 參訪後台 -------------------------------------------------- -->
-    <div id="backstage" data-aos="fade-up" data-aos-once="true" class="w-11/12 sm:w-3/4 lg:w-5/6 max-w-custom-1400px flex flex-col lg:flex-row-reverse items-center rounded-3xl overflow-hidden custom-mask-image bg-[#5c7fb2] shadow-md">
+    <div id="backstage" data-aos="fade-up" class="w-11/12 sm:w-3/4 lg:w-5/6 max-w-custom-1400px flex flex-col lg:flex-row-reverse items-center rounded-3xl overflow-hidden custom-mask-image bg-[#5c7fb2] shadow-md">
         
         <!-- 文字 -->
         <div class="w-full lg:w-1/2 px-6 sm:px-14 py-14 flex flex-col gap-10 text-slate-50">
@@ -281,7 +281,7 @@
             <p class="text-base sm:text-xl leading-loose sm:leading-loose">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet, luctus venenatis lectus magna fringilla urna, porttitor
             </p>
-            <a href="./admin/login.html" target="_blank" class="w-fit px-8 py-2 text-sm sm:text-base border border-slate-50 text-slate-50 rounded-md hover:bg-slate-50 hover:text-black transition">
+            <a href="./admin/index.html" target="_blank" class="w-fit px-8 py-2 text-sm sm:text-base border border-slate-50 text-slate-50 rounded-md hover:bg-slate-50 hover:text-black transition">
                 參訪後台
             </a>
         </div>
@@ -304,7 +304,7 @@
         <div class="w-11/12 sm:w-3/4 lg:w-5/6 max-w-custom-1400px flex flex-col lg:flex-row pt-14 sm:pt-28 pb-14">
 
             <!-- 文字 -->
-            <div data-aos="fade-right" data-aos-once="true" class="w-full lg:w-1/2 px-2 lg:px-14 py-14 flex flex-col gap-10">
+            <div data-aos="fade-right" class="w-full lg:w-1/2 px-2 lg:px-14 py-14 flex flex-col gap-10">
                 <div class="flex flex-col gap-4 text-sky-400">
                     <h4 class="text-4xl sm:text-5xl">與我聯絡</h4>
                     <h5 class="text-xl sm:text-2xl opacity-70 font-custom-futura">Contact Us</h5>
@@ -331,7 +331,7 @@
             </div>
 
             <!-- 表單 -->
-            <ul data-aos="fade-left" data-aos-once="true" class="w-full lg:w-1/2 flex flex-row flex-wrap justify-end text-sm sm:text-base">
+            <ul data-aos="fade-left" class="w-full lg:w-1/2 flex flex-row flex-wrap justify-end text-sm sm:text-base">
                 <li class="w-full lg:w-1/2 p-3 flex flex-col gap-1">
                     <label for="name">姓名</label>
                     <input class="contactForm" type="text" name="name" data-label="姓名" placeholder="請輸入您的姓名" value="">
@@ -372,7 +372,7 @@
         <div class="relative w-full lg:w-5/6 max-w-custom-1400px h-full lg:h-[80vh] flex flex-col landscape:flex-row overflow-hidden rounded-none lg:rounded-3xl translate-y-40 transition duration-300">
 
             <!-- modal 專案 - 圖片 -->
-            <div class="relative w-full landscape:w-3/5 h-3/5 landscape:h-full flex items-center justify-center p-2 md:p-6 bg-slate-200 bg-[length:48px_48px] bg-repeat" style="background-image: url('./assets/img/bg.svg');">
+            <div class="relative w-full landscape:w-3/5 h-3/5 landscape:h-full flex items-center justify-center p-2 md:p-6 bg-slate-200">
                 <div id="modalProjectImg" class="w-full h-full bg-contain bg-no-repeat bg-center drop-shadow-md"></div>
 
                 <!-- modal 專案 - 按鈕 -->
