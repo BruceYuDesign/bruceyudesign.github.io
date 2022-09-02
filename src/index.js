@@ -469,28 +469,28 @@ import { popup } from './components/popup.js';
      * ------------------------------------------------------------------------------------------ 
      */
 
-    const contactSubmit = document.getElementById( 'contactSubmit' );
+    const contactSubmit  = document.getElementById( 'contactSubmit' );
+    const contactElement = document.querySelectorAll( '.contactForm' );
 
     // 點選送出信件
     contactSubmit.addEventListener( 'click' , () => {
         let detail = {};
-        let element = document.querySelectorAll( '.contactForm' );
-        let index = 0;
-        let judge = true;
+        let index  = 0;
+        let judge  = true;
 
         // 取得所有表單
-        while( element[ index ] ) {
+        while( contactElement[ index ] ) {
             
             // 都有資料
-            if( element[ index ].value !== '' ) {
-                detail[ element[ index ].getAttribute( 'name' ) ] = element[ index ].value;
+            if( contactElement[ index ].value !== '' ) {
+                detail[ contactElement[ index ].getAttribute( 'name' ) ] = contactElement[ index ].value;
                 index++;
                 
             // 缺資料
             } else {
                 // popup
                 popup({
-                    text: `「${ element[ index ].getAttribute( 'data-label' ) }」未填`,
+                    text: `「${ contactElement[ index ].getAttribute( 'data-label' ) }」未填`,
                     status: 'danger'
                 });
                 judge = false;
@@ -512,7 +512,7 @@ import { popup } from './components/popup.js';
             emailjs.send( 'service_j5bpzhy' , 'template_ks9uql4' , detail , 'c_TpduG57-KFzdssj' )
                 .then( response => {
                     // 清空表單
-                    element.forEach( element => element.value = '' );
+                    contactElement.forEach( element => element.value = '' );
                     // popup
                     popup({
                         text: '已成功送出',
