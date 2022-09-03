@@ -9,7 +9,8 @@ export default defineConfig({
     build: {
         rollupOptions: {
             input: {
-                index: `./src/index.html`,
+                'index': './src/index.html',
+                'admin/account': './src/admin/account/index.html'
             }
         },
         outDir: '../docs',
