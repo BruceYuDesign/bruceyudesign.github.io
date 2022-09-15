@@ -1,15 +1,5 @@
 let timer;
 
-// 拆解RGB
-function rgbSplit( color ) {
-    color = color.match( /\d+/g );
-    return {
-        red:   parseInt( color[ 0 ] ),
-        green: parseInt( color[ 1 ] ),
-        blue:  parseInt( color[ 2 ] ),
-    };
-};
-
 // 拆解漸層色
 export function gradientSplit( element ) {
     return getComputedStyle( element ).backgroundImage.match( /rgb\([^\)]+\)/g );
@@ -36,6 +26,16 @@ export function gradientAnimate({
         return parseInt( start + ( end - start ) / limit * counter );
     };
 
+    // 拆解RGB
+    const rgbSplit = ( color ) => {
+        color = color.match( /\d+/g );
+        return {
+            red:   parseInt( color[ 0 ] ),
+            green: parseInt( color[ 1 ] ),
+            blue:  parseInt( color[ 2 ] ),
+        };
+    };
+
     // 組合為RGB
     const color = ( start , end ) => {
         let red   = step( rgbSplit( start ).red,   rgbSplit( end ).red   );
@@ -47,7 +47,8 @@ export function gradientAnimate({
     // 變換顏色
     const translate = () => {
         if ( counter <= limit ) {
-            element.style.backgroundImage = `linear-gradient(to right top,${ color( startColor1 , endColor1 ) },${ color( startColor2 , endColor2 ) })`;
+            element.style.backgroundImage =
+                `linear-gradient(to right top,${ color( startColor1 , endColor1 ) },${ color( startColor2 , endColor2 ) })`;
             counter++;
         } else {
             clearInterval( timer );

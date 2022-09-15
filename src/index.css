@@ -18,6 +18,10 @@
         src: url('./assets/font/futura-medium-bt.ttf');
     };
 
+    .font-custom-futura {
+        font-family: 'futura';
+    }
+
     .custom-mask-image {
         -webkit-mask-image: -webkit-radial-gradient(white, black);
     };

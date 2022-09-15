@@ -46,17 +46,20 @@ import { popup } from './components/popup.js';
     });
 
     // 資源跑完
-    window.addEventListener( 'load' , () => {
+    const loadResource = () => {
         load_resource = true;
         loadHide();
-    });
+    };
+
+    window.addEventListener( 'load' , loadResource );
+    setTimeout( loadResource , 5000 );
 
     // header --------------------------------------------------
 
     const header = document.getElementById( 'header' );
 
     // 漢堡選單
-    document.body.addEventListener( 'click' , function ( e ) {
+    document.body.addEventListener( 'click' , e => {
         if ( e.target.getAttribute( 'id' ) === 'headerBurger' ) {
             header.classList.toggle( '--open' );
         } else {
@@ -262,7 +265,7 @@ import { popup } from './components/popup.js';
         });
 
     // projectKindBtn點選
-    projectKindLs.addEventListener( 'click' , ( e ) => {
+    projectKindLs.addEventListener( 'click' , e => {
         if( e.target.nodeName === 'BUTTON' ) {
 
             // 請求資料
@@ -313,7 +316,7 @@ import { popup } from './components/popup.js';
     };
 
     // 請求project資料
-    const getProjectData = ( requestId ) => {
+    const getProjectData = requestId => {
         // TODO : get real API && format: url + `?kind_id=${ requestId }`
         axios.get( '../json/project.json' )
             .then( response => {
@@ -399,7 +402,7 @@ import { popup } from './components/popup.js';
     };
 
     // modalProject帶入資料
-    const modalProjectWrite = ( data ) => {
+    const modalProjectWrite = data => {
 
         // scrollbar置頂
         modalProjectInfo.scroll( 0 , 0 );
@@ -449,7 +452,7 @@ import { popup } from './components/popup.js';
     });
 
     // 點選頁碼清單
-    modalProjectImgPageLs.addEventListener( 'click' , ( e ) => {
+    modalProjectImgPageLs.addEventListener( 'click' , e => {
         if( e.target.nodeName === 'BUTTON' ) {
             detail_page = parseInt( e.target.getAttribute( 'detail_page' ) );
             modalProjectImgChange();

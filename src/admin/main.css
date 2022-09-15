@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+自訂樣式：custom
+自訂JS控制組件：小駝峰命名
+*/
+
+@layer utilities {
+
+    /* ------------------------------------------------------------
+    CUSTOM STYLE
+    ------------------------------------------------------------ */
+
+}
+
+@layer components {
+    #wrapper {
+        @apply min-h-screen w-full flex flex-col items-center justify-start bg-slate-200 text-base text-slate-700
+    }
+
+    .custom-block {
+        @apply bg-slate-50 rounded-md shadow-sm
+    }
+
+    /* ------------------------------------------------------------
+    JS CONTROL
+    ------------------------------------------------------------ */
+
+}

@@ -1,6 +1,6 @@
 [
     {
-        "banner_id" : "1",
+        "banner_id" : "0",
         "tool" : "Illustrator",
         "use" : "做平面設計",
         "img" : "../banner/illustrator.png",
@@ -15,7 +15,7 @@
         }
     },
     {
-        "banner_id" : "2",
+        "banner_id" : "1",
         "tool" : "Photoshop",
         "use" : "做平面設計",
         "img" : "../banner/photoshop.png",

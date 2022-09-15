@@ -12,7 +12,7 @@
  * @param { Function } breakPointFunction
  */
 
-export default class responsiveJs {
+export default class ResponsiveJs {
 
     constructor({
         element: element,
