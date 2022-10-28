@@ -1,0 +1,32 @@
+[
+    {
+        "banner_id" : "0",
+        "tool" : "Illustrator",
+        "use" : "做平面設計",
+        "img" : "../banner/illustrator.png",
+        "sort" : "1", 
+        "gradient" : {
+            "start" : "rgb(28,154,195)",
+            "end" : "rgb(86,240,232)"
+        },
+        "date" : {
+            "build" : "2022-06-30T08:00:00.000Z",
+            "update" : "2022-06-30T08:00:00.000Z"
+        }
+    },
+    {
+        "banner_id" : "1",
+        "tool" : "Photoshop",
+        "use" : "做平面設計",
+        "img" : "../banner/photoshop.png",
+        "sort" : "2", 
+        "gradient" : {
+            "start" : "rgb(1,77,119)",
+            "end" : "rgb(95,178,238)"
+        },
+        "date" : {
+            "build" : "2022-06-30T08:00:00.000Z",
+            "update" : "2022-06-30T08:00:00.000Z"
+        }
+    }
+]
