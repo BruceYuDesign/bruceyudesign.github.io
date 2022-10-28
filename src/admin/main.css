@@ -16,6 +16,12 @@
 }
 
 @layer components {
+    table {
+        @apply w-full
+    }
+    td {
+        @apply bg-slate-300 border-violet-50 whitespace-nowrap
+    }
     #wrapper {
         @apply min-h-screen w-full flex flex-col items-center justify-start bg-slate-200 text-base text-slate-700
     }
