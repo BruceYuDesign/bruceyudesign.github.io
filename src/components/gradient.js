@@ -48,7 +48,9 @@ export function gradientAnimate({
     const translate = () => {
         if ( counter <= limit ) {
             element.style.backgroundImage =
-                `linear-gradient(to right top,${ color( startColor1 , endColor1 ) },${ color( startColor2 , endColor2 ) })`;
+                `linear-gradient(to right top,
+                ${ color( startColor1 , endColor1 ) },
+                ${ color( startColor2 , endColor2 ) })`;
             counter++;
         } else {
             clearInterval( timer );

@@ -7,6 +7,7 @@ export default defineConfig({
     base: '',
     root: './src',
     build: {
+        emptyOutDir: true,
         rollupOptions: {
             input: {
                 'index': './src/index.html',

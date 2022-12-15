@@ -2,27 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-自訂樣式：custom
-自訂JS控制組件：小駝峰命名
-*/
-
 @layer utilities {
 
-    /* ------------------------------------------------------------
-    CUSTOM STYLE
-    ------------------------------------------------------------ */
+    .com-content {
+        @apply w-full py-24 grid place-items-center;
+    }
+
+    .com-container {
+        @apply max-w-[1400px] w-11/12 mx-auto
+            md:w-5/6;
+    }
+
+    .com-block {
+        @apply bg-slate-50 rounded-2xl shadow-md;
+    }
+
+    .com-title {
+        @apply text-4xl text-center font-bold;
+    }
+
+    .com-btn-pill {
+        @apply w-fit px-6 py-1.5 font-bold text-white whitespace-nowrap rounded-full opacity-90 transition
+            hover:opacity-100;
+    }
+
+    .com-text-gradient {
+        width: fit-content;
+        background: -webkit-linear-gradient( 70deg , #0c7edb 0% , #5ec1ff 60% );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
     @font-face {
         font-family: 'futura';
         src: url('./assets/font/futura-medium-bt.ttf');
     };
 
-    .font-custom-futura {
+    .com-font-futura {
         font-family: 'futura';
     }
 
-    .custom-mask-image {
+    /* scrollbar */
+
+    .com-scrollbar {
+        @apply overflow-auto resize-none;
+    }
+
+    .com-scrollbar::-webkit-scrollbar {
+        @apply bg-transparent w-1 h-1
+            md:w-2 md:h-2;
+    };
+
+    .com-scrollbar::-webkit-scrollbar-thumb {
+        @apply rounded-full opacity-50 bg-slate-300;
+    };
+
+    .com-mask-image {
         -webkit-mask-image: -webkit-radial-gradient(white, black);
     };
 
@@ -31,103 +66,58 @@
         0%   { opacity: 0% }
         100% { opacity: 100% }
     };
-    .animate-custom-fadein {
+    .com-animate-fadein {
         animation: fadein 400ms linear 1 backwards
-    };
-
-    /* 平面設計 */
-    @keyframes shaking {
-        0%, 100% { transform: translateY(0%) }
-        50%      { transform: translateY(-2.5%) }
-    };
-    .animate-custom-shaking {
-        animation: shaking 8s linear infinite
-    };
-
-    @keyframes shaking-reverse {
-        0%, 100% { transform: translateY(-2.5%) }
-        50%      { transform: translateY(0%) }
-    };
-    .animate-custom-shaking-reverse {
-        animation: shaking-reverse 8s linear infinite
-    };
-
-    /* UIUX設計 */
-    @keyframes slide {
-        0%, 100% { transform: translateX(6%) }
-        50%      { transform: translateX(0%) }
-    };
-    .animate-custom-slide {
-        animation: slide 8s linear infinite
-    };
-
-    @keyframes slide-reverse {
-        0%, 100% { transform: translateX(-6%) }
-        50%      { transform: translateX(0%) }
-    };
-    .animate-custom-slide-reverse {
-        animation: slide-reverse 8s linear infinite
     };
 }
 
 @layer components {
 
-    /* scrollbar */
-
-    .scrollbar-custom-slate-300,
-    .scrollbar-custom-slate-400 {
-        @apply overflow-auto resize-none;
-    }
-
-    .scrollbar-custom-slate-300::-webkit-scrollbar,
-    .scrollbar-custom-slate-400::-webkit-scrollbar {
-        @apply bg-transparent w-1 h-1 md:w-2 md:h-2;
-    };
-
-    .scrollbar-custom-slate-300::-webkit-scrollbar-thumb,
-    .scrollbar-custom-slate-400::-webkit-scrollbar-thumb {
-        @apply rounded-full opacity-50;
-    };
-
-    .scrollbar-custom-slate-300::-webkit-scrollbar-thumb {
-        @apply bg-slate-300;
-    };
-
-    .scrollbar-custom-slate-400::-webkit-scrollbar-thumb {
-        @apply bg-slate-400;
-    };
-
-    /* ------------------------------------------------------------
-    JS CONTROL
-    ------------------------------------------------------------ */
-
-    /* load */
+    /* ----------------------------------------------------------------------
+        load
+    ---------------------------------------------------------------------- */
     #load.--hide {
         @apply opacity-0 pointer-events-none;
     };
 
+    /* ----------------------------------------------------------------------
+        header
+    ---------------------------------------------------------------------- */
+
+    /* nav */
+    .com-header-link {
+        @apply block px-4 py-1 w-fit text-slate-500 transition
+            hover:text-sky-500;
+    }
+
     /* headerBurger */
-    #header.--open {
-        @apply rounded-2xl;
+    #headerBurger {
+        @apply relative h-6 w-6;
+    }
+    #headerBurger > span {
+        @apply bg-slate-400 h-0.5 transition absolute left-0 right-0 top-0 bottom-0 m-auto pointer-events-none;
     };
 
-    #header.--open > #headerBurger > span:nth-child(1) {
+    #headerBurger > span:nth-child( 1 ) {
+        @apply translate-y-2;
+    };
+    #headerBurger > span:nth-child( 3 ) {
+        @apply -translate-y-2;
+    };
+
+    #header.--open > div > #headerBurger > span:nth-child( 1 ) {
         @apply translate-y-0 rotate-45;
     };
-
-    #header.--open > #headerBurger > span:nth-child(2) {
+    #header.--open > div > #headerBurger > span:nth-child( 2 ) {
         @apply opacity-0;
     };
-
-    #header.--open > #headerBurger > span:nth-child(3) {
+    #header.--open > div > #headerBurger > span:nth-child( 3 ) {
         @apply -translate-y-0 -rotate-45;
     };
 
-    #header.--open > ul {
-        @apply flex;
-    }
-
-    /* banner */
+    /* ----------------------------------------------------------------------
+        banner
+    ---------------------------------------------------------------------- */
     #banner.--hide > div > div > p {
         @apply translate-y-4 opacity-0;
     };
@@ -135,66 +125,158 @@
     #banner.--hide > div > #bannerImg {
         @apply translate-x-4 opacity-0;
     };
-    
-    #bannerBtnLs > button.--click {
+
+    .com-banner-btn {
+        @apply w-2 h-2 border border-slate-50 border-solid rounded-full;
+    }
+
+    .com-banner-btn.--click {
         @apply bg-slate-50;
     };
 
-    .bannerBtn {
-        @apply w-2 sm:w-3 h-2 sm:h-3 border-2 border-slate-50 border-solid rounded-full;
+    /* ----------------------------------------------------------------------
+        service
+    ---------------------------------------------------------------------- */
+    .com-service {
+        @apply flex flex-col gap-8 items-center p-2
+            sm:gap-12 sm:p-8;
     }
 
-    /* project */
-    .projectKindBtn {
-        @apply px-6 sm:px-8 py-1 border border-slate-50 bg-opacity-0
-            text-sm sm:text-base whitespace-nowrap rounded-full transition;
+    /* 圖片 */
+    .com-service > img {
+        @apply w-full rounded-lg
+            lg:w-1/2;
+    }
+
+    /* 內文 */
+    .com-service > div {
+        @apply w-full flex flex-col gap-8 p-6
+            sm:gap-12;
+    }
+
+    .com-service > div > h3 {
+        @apply text-4xl text-sky-500
+            sm:text-5xl;
+    }
+
+    .com-service > div > p {
+        @apply leading-loose text-lg text-slate-500;
+    }
+
+    /* 使用工具 */
+    .com-service > div > ul {
+        @apply flex flex-row flex-wrap gap-5;
+    }
+
+    .com-service > div > ul > li {
+        @apply w-8 h-8;
+    }
+
+    /* ----------------------------------------------------------------------
+        flow
+    ---------------------------------------------------------------------- */
+    .com-flow {
+        @apply relative px-8 py-12 flex flex-col items-center justify-start gap-4 drop-shadow-md
+            !shadow-none;
+    }
+
+    .com-flow:not( :last-child ):before {
+        @apply absolute bg-inherit rotate-45 rounded -z-10;
+        content: '';
+        --size: 2.5rem;
+        width:  var( --size );
+        height: var( --size );
+        bottom: calc( var( --size ) / -4 );
+        right:  calc( 50% - var( --size ) / 2 );
+    }
+
+    @media ( min-width: 640px ) {
+        .com-flow:not( :last-child ):before {
+            bottom: calc( 50% - var( --size ) / 2 );
+            right:  calc( var( --size ) / -4 );
+        }
+    }
+
+    .com-flow > i {
+        @apply w-20 h-20 flex justify-center items-center text-4xl text-sky-300 bg-sky-100 rounded-full;
+    }
+
+    .com-flow > h3 {
+        @apply text-2xl text-center font-bold text-sky-500;
+    }
+
+    .com-flow > ul {
+        @apply w-full ml-3 text-lg leading-loose -indent-4 text-slate-500;
+    }
+
+    .com-flow > ul > li::before {
+        content: '•';
+        @apply text-sky-400 mr-2 font-bold;
+    }
+
+    .com-flow > ul > li {
+        @apply mt-2;
+    }
+
+    /* ----------------------------------------------------------------------
+        project
+    ---------------------------------------------------------------------- */
+
+    /* projectKind */
+    .com-project-kind {
+        @apply bg-slate-400
+    }
+
+    .com-project-kind:hover,
+    .com-project-kind.--click {
+        @apply bg-sky-500
+    }
+
+    /* projectBlog */
+    .com-project-blog {
+        @apply relative aspect-1 bg-center bg-cover overflow-hidden;
+    }
+
+    .com-project-blog > button {
+        @apply w-full h-full absolute left-0 top-0 right-0 bottom-0 flex justify-center items-center flex-col gap-4 bg-black/80 text-white opacity-0 transition
+            hover:opacity-100;
+    }
+
+    .com-project-blog > button > h4 {
+        @apply text-3xl font-bold pointer-events-none;
+    }
+
+    .com-project-blog > button > p {
+        @apply text-lg pointer-events-none;
+    }
+
+    /* projectModal */
+    .com-project-modal-img-page{
+        @apply w-2 h-2 rounded-full bg-white opacity-50;
+    }
+
+    .com-project-modal-img-page.--click{
+        @apply opacity-100
+    }
+
+    /* ------------------------------------------------------------
+        contact
+    ------------------------------------------------------------ */
+    .com-contact-link {
+        @apply w-10 h-10 rounded-full opacity-80 transition
+            hover:opacity-100;
+    }
+
+    .com-contact-form {
+        @apply w-full flex flex-col gap-1;
     };
 
-    .projectKindBtn.--click,
-    .projectKindBtn:hover {
-        @apply bg-slate-50 text-black;
-    };
-
-    .projectBlog {
-        @apply w-1/2 lg:w-1/3 p-2 sm:p-4;
-    };
-
-    .projectBlog > div {
-        @apply relative rounded-xl overflow-hidden shadow-md;
-    };
-
-    .projectBlog > div > div {
-        @apply aspect-1 bg-cover bg-center transition;
-    };
-
-    .projectBlog > div > button {
-        @apply absolute top-0 left-0 w-full h-full
-            flex flex-col gap-1 sm:gap-2 justify-center items-center
-            text-slate-50 font-semibold
-            bg-black bg-opacity-80 opacity-0 transition;
-    };
-
-    .projectBlog > div > button > p {
-        @apply text-lg sm:text-xl md:text-2xl pointer-events-none;
-    };
-
-    .projectBlog > div > button > span {
-        @apply text-sm sm:text-base md:text-lg opacity-60 pointer-events-none;
-    };
-
-    .projectBlog > div:hover > div {
-        @apply scale-110;
-    };
-
-    .projectBlog > div:hover > button {
-        @apply opacity-100;
-    };
-
-    /* contact */
-    .contactForm {
-        @apply bg-slate-300 text-slate-800 placeholder:text-slate-400
-            focus:outline-none rounded-md p-2;
-    };
+    .com-contact-form > input,
+    .com-contact-form > textarea {
+        @apply p-2 text-slate-800 bg-slate-200 rounded
+            placeholder:text-slate-400
+            focus:outline-none;
+    }
 
     #contactSubmit.--load {
         @apply pointer-events-none;
@@ -208,42 +290,32 @@
         @apply block;
     };
 
-    /* modal */
-    .modal {
-        @apply fixed left-0 top-0 right-0 bottom-0
-            z-50 grid place-items-center
-            bg-black bg-opacity-80
-            opacity-0 pointer-events-none transition duration-200;
-    };
+        /* modal */
+        .com-modal {
+            @apply fixed left-0 top-0 right-0 bottom-0 z-50 grid place-items-center bg-black/75 opacity-0 pointer-events-none transition duration-200;
+        };
 
-    .modal.--show {
-        @apply opacity-100 pointer-events-auto;
-    };
-
-    .modal.--show > div {
-        @apply translate-y-0;
-    };
-
-    #modalProjectLink.--hide {
-        @apply hidden;
-    };
-
-    .modalProjectImgPage {
-        @apply w-2 h-2 rounded-full bg-white bg-opacity-50;
-    };
-
-    .modalProjectImgPage.--click {
-        @apply bg-opacity-100;
-    };
-
-    /* popup */
-    #popup {
-        @apply fixed top-24 flex flex-row gap-4 px-4 sm:px-8 py-2
-            text-sm sm:text-base rounded-full shadow-lg text-white
-            -translate-y-8 opacity-0 duration-300 z-20;
-    };
-
-    #popup.--show {
-        @apply translate-y-0 opacity-100;
-    };
+        .com-modal > div {
+            @apply relative w-5/6 max-w-7xl h-[80vh] flex flex-row overflow-hidden rounded-2xl translate-y-40 transition duration-200
+        }
+    
+        .com-modal.--show {
+            @apply opacity-100 pointer-events-auto;
+        };
+    
+        .com-modal.--show > div {
+            @apply translate-y-0;
+        };
+    
+        #projectModalLink.--hide {
+            @apply hidden;
+        };
+    
+        .com-projectModalImgPage {
+            @apply w-2 h-2 rounded-full bg-white bg-opacity-50;
+        };
+    
+        .com-projectModalImgPage.--click {
+            @apply bg-opacity-100;
+        };
 }

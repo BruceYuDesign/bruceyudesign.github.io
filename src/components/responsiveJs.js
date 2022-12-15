@@ -1,10 +1,6 @@
 /**
  * Copyright 2022 BRUCE YU DESIGN
- */
-
-'use strict';
-
-/**
+ *
  * @param { Node } element
  * @param { Function } defaultFunction
  * @param { Array } breakPoint
