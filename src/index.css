@@ -86,23 +86,26 @@
 
     /* nav */
     .com-header-link {
-        @apply block px-4 py-1 w-fit text-slate-500 transition
+        @apply block px-4 py-1 w-fit text-slate-500 whitespace-nowrap transition
             hover:text-sky-500;
     }
 
     /* headerBurger */
     #headerBurger {
-        @apply relative h-6 w-6;
+        @apply relative h-7 w-7;
     }
     #headerBurger > span {
         @apply bg-slate-400 h-0.5 transition absolute left-0 right-0 top-0 bottom-0 m-auto pointer-events-none;
     };
-
     #headerBurger > span:nth-child( 1 ) {
-        @apply translate-y-2;
+        @apply translate-y-2.5;
     };
     #headerBurger > span:nth-child( 3 ) {
-        @apply -translate-y-2;
+        @apply -translate-y-2.5;
+    };
+
+    #header.--open > div > nav {
+        @apply opacity-100 pointer-events-auto;
     };
 
     #header.--open > div > #headerBurger > span:nth-child( 1 ) {
@@ -251,6 +254,18 @@
     }
 
     /* projectModal */
+    #projectModal.--show {
+        @apply opacity-100 pointer-events-auto;
+    };
+
+    #projectModal.--show > div {
+        @apply translate-y-0;
+    };
+
+    #projectModalLink.--hide {
+        @apply hidden;
+    };
+
     .com-project-modal-img-page{
         @apply w-2 h-2 rounded-full bg-white opacity-50;
     }
@@ -289,33 +304,4 @@
     #contactSubmit.--load > img {
         @apply block;
     };
-
-        /* modal */
-        .com-modal {
-            @apply fixed left-0 top-0 right-0 bottom-0 z-50 grid place-items-center bg-black/75 opacity-0 pointer-events-none transition duration-200;
-        };
-
-        .com-modal > div {
-            @apply relative w-5/6 max-w-7xl h-[80vh] flex flex-row overflow-hidden rounded-2xl translate-y-40 transition duration-200
-        }
-    
-        .com-modal.--show {
-            @apply opacity-100 pointer-events-auto;
-        };
-    
-        .com-modal.--show > div {
-            @apply translate-y-0;
-        };
-    
-        #projectModalLink.--hide {
-            @apply hidden;
-        };
-    
-        .com-projectModalImgPage {
-            @apply w-2 h-2 rounded-full bg-white bg-opacity-50;
-        };
-    
-        .com-projectModalImgPage.--click {
-            @apply bg-opacity-100;
-        };
 }
