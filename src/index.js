@@ -12,7 +12,6 @@ import emailjs from '@emailjs/browser';
 import { gradientAnimate , gradientSplit } from './components/gradient.js';
 import { loadImage } from './components/image.js';
 import { dateTransform } from './components/date.js';
-import { popup } from './components/popup.js';
 
 !function() {
     'use strict';
@@ -43,13 +42,13 @@ import { popup } from './components/popup.js';
     });
 
     // 資源跑完
-    const loadResource = () => {
+    const resourceLoad = () => {
         load_resource = true;
         hideLoad();
     };
 
-    window.addEventListener( 'load' , loadResource );
-    setTimeout( loadResource , 5000 );
+    window.addEventListener( 'load' , resourceLoad );
+    setTimeout( resourceLoad , 5000 );
 
     /**
      * ------------------------------------------------------------------------------------------
@@ -432,63 +431,131 @@ import { popup } from './components/popup.js';
      * CONTACT
      * ------------------------------------------------------------------------------------------ 
      */
+    const contactSubmit     = document.getElementById( 'contactSubmit' );
+    const contactSubmitText = document.getElementById( 'contactSubmitText' );
+    const contactForm = [
+        {
+            element: document.getElementById( 'contactName' ),
+            ruleList: [
+                {
+                    rule: value => value !== '',
+                    alert: '此為必填欄位！'
+                }
+            ]
+        },
+        {
+            element: document.getElementById( 'contactCom' ),
+            ruleList: [
+                {
+                    rule: value => value !== '',
+                    alert: '此為必填欄位！'
+                }
+            ]
+        },
+        {
+            element: document.getElementById( 'contactTel' ),
+            ruleList: [
+                {
+                    rule: value => value !== '',
+                    alert: '此為必填欄位！'
+                },
+                {
+                    rule: value => value.match( /[0-9]/ ),
+                    alert: '電話格式錯誤！'
+                }
+            ]
+        },
+        {
+            element: document.getElementById( 'contactEmail' ),
+            ruleList: [
+                {
+                    rule: value => value !== '',
+                    alert: '此為必填欄位！'
+                },
+                {
+                    rule:  value => value.match( /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/ ),
+                    alert: '信箱格式錯誤！'
+                }
+            ]
+        },
+        {
+            element: document.getElementById( 'contactDetail' ),
+            ruleList: [
+                {
+                    rule: value => value !== '',
+                    alert: '此為必填欄位！'
+                },
+                {
+                    rule: value => value.length <= 500,
+                    alert: '已超出500字！'
+                }
+            ]
+        }
+    ];
 
-    const contactSubmit  = document.getElementById( 'contactSubmit' );
-    const contactElement = document.querySelectorAll( '.contactForm' );
-
-    // 點選送出信件
+    // 點選送出
     contactSubmit.addEventListener( 'click' , () => {
-        let detail = {};
-        let index  = 0;
-        let judge  = true;
-
-        // 取得所有表單
-        while( contactElement[ index ] ) {
-            
-            // 都有資料
-            if( contactElement[ index ].value !== '' ) {
-                detail[ contactElement[ index ].getAttribute( 'name' ) ] = contactElement[ index ].value;
-                index++;
-                
-            // 缺資料
-            } else {
-                // popup
-                popup({
-                    text: `「${ contactElement[ index ].getAttribute( 'data-label' ) }」未填`,
-                    status: 'danger'
-                });
-                judge = false;
-                break;
-            }
-        };
-
-        // 發送email
-        if( judge ) {
-
-            // popup
-            popup({
-                text: '信件發送中',
-                status: 'info'
-            });
-            contactSubmit.classList.add( '--load' );
-
-            // emailjs
-            emailjs.send( 'service_j5bpzhy' , 'template_ks9uql4' , detail , 'c_TpduG57-KFzdssj' )
-                .then( response => {
-                    // 清空表單
-                    contactElement.forEach( element => element.value = '' );
-                    // popup
-                    popup({
-                        text: '已成功送出',
-                        status: 'success'
-                    });
-                    contactSubmit.classList.remove( '--load' );
-                })
-                .catch( error => {
-                    console.error( error )
-                    contactSubmit.classList.remove( '--load' );
-                });
-        };
+        // 符合規則，打包信件
+        contactJudge( contactForm ) ? contactBundle() : null;
     });
+
+    // 判斷表單
+    const contactJudge = list => {
+        let judge = true;
+        list.forEach( li => {
+            // 清空警告
+            li.element.previousElementSibling.innerHTML = '';
+            // 有規則
+            if( li.ruleList ) {
+                for( let i = 0 ; i < li.ruleList.length ; i++ ) {
+                    let ru = li.ruleList[ i ];
+                    let el = li.element;
+                    // 不符規則
+                    if( !ru.rule( el.value ) ) {
+                        contactError( el , ru.alert );
+                        judge = false;
+                        break;
+                    }
+                }
+            }
+        });
+        return judge;
+    };
+
+    // 表單警告
+    const contactError = ( element , alert ) => {
+        element.previousElementSibling.innerHTML =
+            '<svg viewBox="0 0 512 512"><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zm32 224c0 17.7-14.3 32-32 32s-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32z"/></svg>'
+            + alert;
+    };
+
+    // 打包信件
+    const contactBundle = () => {
+        let detail = {};
+        contactForm.forEach( li => {
+            detail[ li.element.getAttribute( 'name' ) ] = li.element.value;
+        });
+        contactSend( detail );
+    };
+
+    // 發送信件
+    const contactSend = detail => {
+        // loading
+        contactSubmit.classList.add( '--load' );
+        // emailjs
+        emailjs.send( 'service_j5bpzhy' , 'template_uq3szmn' , detail , '48hEci00blM8bCx6h' )
+            .then( () => {
+                contactForm.forEach( li => li.element.value = '' );
+                contactSubmitText.innerHTML = '發送成功';
+            })
+            .catch( error => {
+                console.error( error );
+                contactSubmitText.innerHTML = '發送失敗';
+            })
+            .finally( () => {
+                contactSubmit.classList.remove( '--load' );
+                setTimeout( () => contactSubmitText.innerHTML = '送出' , 2000 );
+            });
+    };
 
 }()

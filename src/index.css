@@ -283,14 +283,22 @@
     }
 
     .com-contact-form {
-        @apply w-full flex flex-col gap-1;
+        @apply w-full flex flex-row flex-wrap gap-1;
     };
 
     .com-contact-form > input,
     .com-contact-form > textarea {
-        @apply p-2 text-slate-800 bg-slate-200 rounded
+        @apply w-full p-2 text-slate-800 bg-slate-200 rounded
             placeholder:text-slate-400
             focus:outline-none;
+    }
+
+    .com-contact-form > span {
+        @apply w-fit flex flex-row gap-1 items-center text-red-400 fill-red-400;
+    }
+
+    .com-contact-form > span > svg {
+        @apply w-4 h-4;
     }
 
     #contactSubmit.--load {

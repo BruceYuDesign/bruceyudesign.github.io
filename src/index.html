@@ -452,16 +452,20 @@
                     <label for="name">
                         姓名
                     </label>
-                    <input type="text"
+                    <span></span>
+                    <input id="contactName"
+                        type="text"
                         name="name"
                         data-label="姓名"
                         placeholder="請輸入您的姓名">
                 </div>
                 <div class="com-contact-form">
-                    <label for="company">
+                    <label for="companyCom">
                         公司名稱
                     </label>
-                    <input type="text"
+                    <span></span>
+                    <input id="contactCom"
+                        type="text"
                         name="company"
                         data-label="公司名稱"
                         placeholder="請輸入貴司名稱">
@@ -470,7 +474,9 @@
                     <label for="tel">
                         聯絡電話
                     </label>
-                    <input type="tel"
+                    <span></span>
+                    <input id="contactTel"
+                        type="tel"
                         name="tel"
                         data-label="聯絡電話"
                         placeholder="請輸入聯絡電話">
@@ -479,7 +485,9 @@
                     <label for="email">
                         信箱
                     </label>
-                    <input type="email"
+                    <span></span>
+                    <input id="contactEmail"
+                        type="email"
                         name="email"
                         data-label="信箱"
                         placeholder="請輸入您的信箱">
@@ -488,9 +496,11 @@
                     col-span-1
                     sm:col-span-2">
                     <label for="detail">
-                        需要服務的內容（上限500字）
+                        需要服務的內容
                     </label>
-                    <textarea class="h-48 scrollbar-custom-slate-400"
+                    <span></span>
+                    <textarea id="contactDetail"
+                        class="h-48 scrollbar-custom-slate-400"
                         name="detail"
                         data-label="需要服務的內容"
                         placeholder="有任何想法，都可以與我聯絡"></textarea>
@@ -499,10 +509,12 @@
                     col-start-1
                     sm:col-start-2">
                     <button id="contactSubmit"
-                        class="p-2 flex justify-center bg-sky-600 text-slate-50 rounded transition
+                        class="w-full p-2 flex justify-center bg-sky-600 text-slate-50 rounded transition
                             hover:bg-sky-500"
                         type="button">
-                        <span>送出</span>
+                        <span id="contactSubmitText">
+                            送出
+                        </span>
                         <img class="h-6 animate-spin hidden"
                             src="./assets/img/load.svg"
                             alt="load">
